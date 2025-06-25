@@ -1,44 +1,12 @@
 "use client"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Trophy, Target, Gamepad2 } from "lucide-react"
-import SkinDraftDuels from "../skin-draft-duels"
-import SkinValuator from "../skin-valuator"
-
-type GameMode = "home" | "draft-duels" | "skin-valuator"
+import Link from "next/link"
 
 export default function HomePage() {
-  const [currentGame, setCurrentGame] = useState<GameMode>("home")
-
-  if (currentGame === "draft-duels") {
-    return (
-      <div>
-        <div className="absolute top-4 left-4 z-10">
-          <Button onClick={() => setCurrentGame("home")} variant="outline" className="bg-white/90 hover:bg-white">
-            ← Back to Home
-          </Button>
-        </div>
-        <SkinDraftDuels />
-      </div>
-    )
-  }
-
-  if (currentGame === "skin-valuator") {
-    return (
-      <div>
-        <div className="absolute top-4 left-4 z-10">
-          <Button onClick={() => setCurrentGame("home")} variant="outline" className="bg-white/90 hover:bg-white">
-            ← Back to Home
-          </Button>
-        </div>
-        <SkinValuator />
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800">
       {/* Header */}
@@ -81,14 +49,12 @@ export default function HomePage() {
                   <span>Strategy, Market Knowledge</span>
                 </div>
               </div>
-              <Button
-                onClick={() => setCurrentGame("draft-duels")}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3"
-                size="lg"
-              >
-                <Gamepad2 className="w-5 h-5 mr-2" />
-                Start Dueling
-              </Button>
+              <Link href="/draft-duels">
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3" size="lg">
+                  <Gamepad2 className="w-5 h-5 mr-2" />
+                  Start Dueling
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -120,14 +86,12 @@ export default function HomePage() {
                   <span>Price Knowledge, Intuition</span>
                 </div>
               </div>
-              <Button
-                onClick={() => setCurrentGame("skin-valuator")}
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3"
-                size="lg"
-              >
-                <Target className="w-5 h-5 mr-2" />
-                Start Guessing
-              </Button>
+              <Link href="/skin-valuator">
+                <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3" size="lg">
+                  <Target className="w-5 h-5 mr-2" />
+                  Start Guessing
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
